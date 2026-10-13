@@ -4,7 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Books | William Hoffman Books</title>
+    <!--
+      PAGE METADATA
+      A descriptive title and meta description help
+      readers and search engines identify this page.
+    -->
+    <title>Devotional Books | William G. Hoffman</title>
+
+    <meta
+      name="description"
+      content="Explore Daily Reflection for the Soul, a growing collection of Christian devotional books by William G. Hoffman."
+    />
 
     <link
       rel="icon"
@@ -12,13 +22,22 @@
       href="images/logo/hoffman-books-icon.png"
     />
 
+    <!-- Shared stylesheet keeps the design consistent -->
     <link rel="stylesheet" href="css/styles.css" />
   </head>
 
   <body>
+    <!-- ========================================
+         HEADER AND NAVIGATION
+
+         Use the same header on every page.
+         aria-current identifies the active page
+         for assistive technology.
+    ========================================= -->
+
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="index.html" aria-label="Return to homepage">
           <img
             src="images/logo/william-hoffman-books.webp"
             alt="William Hoffman Books"
@@ -28,174 +47,213 @@
 
         <nav class="main-nav" aria-label="Main navigation">
           <a href="index.html">Home</a>
-          <a href="books.html">Books</a>
+          <a href="books.html" aria-current="page">Books</a>
           <a href="about.html">About William</a>
-          <a href="index.html#reflections">Stories of Faith</a>
-          <a href="index.html#ascendancy">The Ascendancy Wars</a>
+          <a href="index.html#reflections">Devotional Series</a>
+          <a href="index.html#daily-reflections">Daily Reflections</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <!-- =========================
-           Books Introduction
-      ========================== -->
+      <!-- ========================================
+           BOOKS PAGE INTRODUCTION
+
+           Each page has one primary <h1> heading.
+
+           The introduction tells visitors what
+           they will find before presenting the books.
+      ========================================= -->
 
       <section class="books-page-intro">
         <div class="books-page-intro-inner">
-          <p class="section-kicker">William Hoffman Books</p>
+          <p class="section-kicker">Daily Reflection for the Soul</p>
 
-          <h1>Books</h1>
+          <h1>Devotional Books</h1>
 
           <p>
-            From Scripture-centered reflections to military science fiction,
-            William G. Hoffman's books explore faith, courage, discovery, and
-            the choices that shape our lives.
+            Explore a growing collection of Christian devotional books by
+            William G. Hoffman. Each volume offers Scripture, reflection, and
+            prayer to encourage a deeper understanding of God's Word and a
+            closer daily walk with Jesus Christ.
           </p>
         </div>
       </section>
 
-      <!-- =========================
-           Stories of Faith
-      ========================== -->
+      <!-- ========================================
+           DEVOTIONAL BOOK COLLECTION
+
+           CSS Grid controls the book layout.
+
+           Each <article> represents one book.
+           Additional books can be added by copying
+           an existing article and updating its content.
+
+           The layout will adapt to screen size through
+           media queries in styles.css.
+      ========================================= -->
 
       <section class="books-faith-section">
         <div class="books-page-inner">
           <div class="books-group-heading">
-            <p class="section-kicker">Stories of Faith</p>
+            <p class="section-kicker">The Collection</p>
 
             <h2>Daily Reflection for the Soul</h2>
 
-            <p>Three 90-day devotional journeys through Scripture.</p>
+            <p>
+              A continuing journey through Scripture, one reflection at a time.
+            </p>
           </div>
 
           <div class="books-page-grid books-page-grid-three">
-            <!-- A Father's Love -->
+            <!-- ==================================
+                 BOOK ONE: A FATHER'S LOVE
+            ================================== -->
 
             <article class="books-page-card">
               <a href="books/fathers-love.html">
                 <img
                   src="images/devotionals/fathers-love.webp"
-                  alt="A Father's Love by William G. Hoffman"
+                  alt="Cover of A Father's Love by William G. Hoffman"
                   class="books-page-cover"
+                  loading="lazy"
                 />
               </a>
 
               <h3>A Father's Love</h3>
 
-              <p>First Quarter Daily Reflection</p>
+              <p>
+                A devotional journey centered on knowing and trusting God as
+                Father.
+              </p>
 
               <a href="books/fathers-love.html" class="book-link">
                 Learn More
               </a>
             </article>
 
-            <!-- A Son's Love -->
+            <!-- ==================================
+                 BOOK TWO: A SON'S LOVE
+            ================================== -->
 
             <article class="books-page-card">
               <a href="books/sons-love.html">
                 <img
                   src="images/devotionals/sons-love.webp"
-                  alt="A Son's Love by William G. Hoffman"
+                  alt="Cover of A Son's Love by William G. Hoffman"
                   class="books-page-cover"
+                  loading="lazy"
                 />
               </a>
 
               <h3>A Son's Love</h3>
 
-              <p>Reflections from the Gospel of John</p>
+              <p>
+                Reflections from the Gospel of John, exploring the life and
+                teachings of Jesus Christ.
+              </p>
 
               <a href="books/sons-love.html" class="book-link"> Learn More </a>
             </article>
 
-            <!-- A Spirit's Love -->
+            <!-- ==================================
+                 BOOK THREE: A SPIRIT'S LOVE
+            ================================== -->
 
             <article class="books-page-card">
               <a href="books/spirits-love.html">
                 <img
                   src="images/devotionals/spirits-love.webp"
-                  alt="A Spirit's Love by William G. Hoffman"
+                  alt="Cover of A Spirit's Love by William G. Hoffman"
                   class="books-page-cover"
+                  loading="lazy"
                 />
               </a>
 
               <h3>A Spirit's Love</h3>
 
-              <p>Reflections from the Book of Acts</p>
+              <p>
+                Reflections from the Book of Acts, following the work of the
+                Holy Spirit and the growth of the early church.
+              </p>
 
               <a href="books/spirits-love.html" class="book-link">
                 Learn More
               </a>
             </article>
+
+            <!-- ==================================
+                 BOOK FOUR: WALKING IN THE LIGHT
+
+                 Temporary placeholder until the
+                 cover and individual book page
+                 are available.
+
+                 No link is included because a
+                 broken link would frustrate visitors.
+            ================================== -->
+
+            <article class="books-page-card">
+              <div class="book-cover-placeholder">
+                <span>Daily Reflection for the Soul</span>
+
+                <strong>Walking in the Light</strong>
+
+                <span>William G. Hoffman</span>
+              </div>
+
+              <h3>Walking in the Light</h3>
+
+              <p>
+                Continue the journey through Scripture with reflections on
+                faith, obedience, and living in the light of God's Word.
+              </p>
+
+              <p class="book-coming-soon">Book Four — Coming Soon</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- =========================
-           The Ascendancy Wars
-      ========================== -->
+      <!-- ========================================
+           CONTINUE READING
 
-      <section class="books-ascendancy-section">
-        <div class="books-page-inner">
-          <div class="books-group-heading books-group-heading-dark">
-            <p class="ascendancy-kicker">Stories of Courage</p>
+           Connects visitors with the separate
+           Journey in Faith devotional blog.
 
-            <h2>The Ascendancy Wars</h2>
+           External links use rel="noopener noreferrer"
+           as a security and privacy precaution.
+      ========================================= -->
 
-            <p>
-              Military science fiction set among distant worlds, ancient
-              technology, and the struggle for humanity's future.
-            </p>
-          </div>
+      <section class="reflections-link-section">
+        <div class="reflections-link-inner">
+          <p class="reflections-link-kicker">Continue the Journey</p>
 
-          <div class="books-page-grid books-page-grid-two">
-            <!-- The Emma Shard -->
+          <h2>Daily Reflections Online</h2>
 
-            <article class="books-page-card books-page-card-dark">
-              <a href="books/emma-shard.html">
-                <img
-                  src="images/ascendancy/emma-shard.webp"
-                  alt="The Emma Shard: The Ascendancy Wars by William G. Hoffman"
-                  class="books-page-cover"
-                />
-              </a>
+          <p>
+            Follow William's ongoing reflections on Scripture, faith, and
+            everyday life with Christ at Journey in Faith.
+          </p>
 
-              <p class="book-status">Book One</p>
-
-              <h3>The Emma Shard</h3>
-
-              <p>
-                A fast-paced military science-fiction adventure where every
-                decision could change the future of mankind.
-              </p>
-
-              <a href="books/emma-shard.html" class="ascendancy-link">
-                Learn More
-              </a>
-            </article>
-
-            <!-- Beyond the Gate -->
-
-            <article class="books-page-card books-page-card-dark">
-              <img
-                src="images/ascendancy/beyond-the-gate.webp"
-                alt="Beyond the Gate: The Ascendancy Wars"
-                class="books-page-cover"
-              />
-
-              <p class="book-status">Book Two — In Production</p>
-
-              <h3>Beyond the Gate</h3>
-
-              <p>
-                The next chapter in The Ascendancy Wars is currently in
-                production.
-              </p>
-            </article>
-          </div>
+          <a
+            href="https://journey-in-faith.com/"
+            class="button reflections-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit Journey in Faith
+          </a>
         </div>
       </section>
     </main>
+
+    <!-- ========================================
+         FOOTER
+
+         Consistent footer navigation makes it
+         easy to move between website pages.
+    ========================================= -->
 
     <footer class="site-footer">
       <div class="footer-inner">
@@ -206,14 +264,12 @@
 
           <a href="about.html">About William</a>
 
-          <a href="index.html#reflections">Stories of Faith</a>
-
-          <a href="index.html#ascendancy">The Ascendancy Wars</a>
+          <a href="index.html#reflections">Devotional Series</a>
 
           <a
             href="https://journey-in-faith.com/"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Daily Reflections
           </a>
@@ -225,6 +281,7 @@
       </div>
     </footer>
 
+    <!-- JavaScript loads after the page content -->
     <script src="js/main.js"></script>
   </body>
 </html>

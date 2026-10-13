@@ -4,7 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>About William | William Hoffman Books</title>
+    <!--
+      PAGE METADATA
+
+      Each page has a unique title and description.
+      This helps search engines understand the
+      content and gives visitors useful information
+      when the page appears in search results.
+    -->
+
+    <title>About William G. Hoffman | Christian Devotional Author</title>
+
+    <meta
+      name="description"
+      content="Learn about William G. Hoffman, his career in the Navy, technology, education, and Christian ministry, and his journey as a devotional author."
+    />
 
     <link
       rel="icon"
@@ -12,13 +26,28 @@
       href="images/logo/hoffman-books-icon.png"
     />
 
+    <!--
+      SHARED STYLESHEET
+
+      Using one stylesheet keeps the appearance
+      consistent across the entire website.
+    -->
     <link rel="stylesheet" href="css/styles.css" />
   </head>
 
   <body>
+    <!-- ========================================
+         HEADER AND NAVIGATION
+
+         The navigation is identical across pages.
+
+         aria-current="page" identifies the
+         current page for screen readers.
+    ========================================= -->
+
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="index.html" aria-label="Return to homepage">
           <img
             src="images/logo/william-hoffman-books.webp"
             alt="William Hoffman Books"
@@ -28,27 +57,48 @@
 
         <nav class="main-nav" aria-label="Main navigation">
           <a href="index.html">Home</a>
+
           <a href="books.html">Books</a>
-          <a href="about.html">About William</a>
-          <a href="index.html#reflections">Stories of Faith</a>
-          <a href="index.html#ascendancy">The Ascendancy Wars</a>
+
+          <a href="about.html" aria-current="page"> About William </a>
+
+          <a href="index.html#reflections"> Devotional Series </a>
+
+          <a href="index.html#daily-reflections"> Daily Reflections </a>
         </nav>
       </div>
     </header>
 
     <main>
-      <!-- =========================
-           About William
-      ========================== -->
+      <!-- ========================================
+           ABOUT THE AUTHOR
+
+           CSS GRID LAYOUT
+
+           This section uses two columns on desktop:
+           one for the author photograph and one
+           for the biography.
+
+           A media query changes the layout to
+           one column on smaller screens.
+
+           The <h1> is the primary page heading.
+      ========================================= -->
 
       <section class="about-page-section">
         <div class="about-page-inner">
+          <!-- Author photograph -->
+
           <div class="about-page-image">
             <img
               src="images/author/william-hoffman.webp"
               alt="William G. Hoffman"
+              width="340"
+              loading="lazy"
             />
           </div>
+
+          <!-- Author biography -->
 
           <div class="about-page-content">
             <p class="about-kicker">About the Author</p>
@@ -81,26 +131,46 @@
             </p>
 
             <p>
-              His writing now brings together the different parts of that life.
-              His devotional books grow from Scripture, reflection, teaching,
-              and ministry, while his science fiction draws on a lifelong
-              interest in technology, problem-solving, exploration, and the
-              choices people make under pressure.
+              His experiences in teaching and ministry helped shape his approach
+              to writing. He believes that studying Scripture should lead us
+              beyond simply knowing what the Bible says to considering how God's
+              Word applies to our lives.
             </p>
 
             <p>
-              He now writes both Christian reflections and science-fiction
-              adventures, including the
-              <em>Daily Reflection for the Soul</em> series and
-              <em>The Ascendancy Wars</em>.
+              Today, William devotes much of his writing to
+              <em>Daily Reflection for the Soul</em>, a continuing collection of
+              Christian reflections drawn from Scripture and everyday life.
+            </p>
+
+            <p>
+              Through these devotional books, his hope is that readers will find
+              encouragement, grow in their understanding of God's Word, and
+              strengthen their daily walk with Jesus Christ.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- =========================
-           Connect
-      ========================== -->
+      <!-- ========================================
+           CONNECT WITH THE AUTHOR
+
+           This section provides two distinct
+           destinations:
+
+           Goodreads:
+           Discover and follow the published books.
+
+           Journey in Faith:
+           Read ongoing devotional reflections.
+
+           These are separate resources, so two
+           links are appropriate here, unlike
+           the single primary action in the hero.
+
+           External links use rel="noopener noreferrer"
+           for security and privacy.
+      ========================================= -->
 
       <section class="about-connect-section">
         <div class="about-connect-inner">
@@ -109,8 +179,9 @@
           <h2>Follow the Books and the Journey</h2>
 
           <p>
-            Readers can connect with William on Goodreads or continue reading
-            his ongoing devotional reflections at Journey in Faith.
+            Explore William's published devotional books on Goodreads or
+            continue reading his ongoing reflections on Scripture, faith, and
+            everyday life at Journey in Faith.
           </p>
 
           <div class="about-connect-actions">
@@ -118,16 +189,16 @@
               href="https://www.goodreads.com/author/show/61017660.William_Hoffman"
               class="button goodreads-button"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             >
               Connect on Goodreads
             </a>
 
             <a
               href="https://journey-in-faith.com/"
-              class="button button-secondary"
+              class="button reflections-button"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             >
               Visit Journey in Faith
             </a>
@@ -135,6 +206,16 @@
         </div>
       </section>
     </main>
+
+    <!-- ========================================
+         FOOTER
+
+         Consistent footer navigation makes
+         moving between pages easier.
+
+         The footer also provides a link to
+         the ongoing devotional blog.
+    ========================================= -->
 
     <footer class="site-footer">
       <div class="footer-inner">
@@ -145,14 +226,12 @@
 
           <a href="about.html">About William</a>
 
-          <a href="index.html#reflections">Stories of Faith</a>
-
-          <a href="index.html#ascendancy">The Ascendancy Wars</a>
+          <a href="index.html#reflections"> Devotional Series </a>
 
           <a
             href="https://journey-in-faith.com/"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Daily Reflections
           </a>
@@ -164,6 +243,12 @@
       </div>
     </footer>
 
+    <!--
+      JavaScript is loaded at the end of the body.
+
+      This allows the HTML to load before
+      the browser executes the script.
+    -->
     <script src="js/main.js"></script>
   </body>
 </html>

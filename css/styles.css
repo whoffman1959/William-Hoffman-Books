@@ -1,8 +1,33 @@
-/* =========================
-   Base
-========================= */
+/* =========================================================
+   WILLIAM G. HOFFMAN — CHRISTIAN DEVOTIONAL BOOKS
+   Shared stylesheet for index.html, books.html, about.html,
+   and the individual devotional book pages.
 
-* {
+   PORTFOLIO NOTE: Keep layout rules grouped by component.
+   Reusing a class across pages reduces duplicated CSS.
+   ========================================================= */
+
+/* 1. BASE AND DESIGN TOKENS
+   CSS custom properties make colors and spacing easy to update
+   across the entire website from one place. */
+:root {
+  --cream: #f5f1e8;
+  --paper: #faf8f2;
+  --sand: #ebe4d7;
+  --ink: #242424;
+  --body-text: #4f4f4f;
+  --muted: #555555;
+  --gold: #d9bd87;
+  --gold-dark: #766346;
+  --dark: #121720;
+  --darkest: #0c1016;
+  --light-text: #f4f1ea;
+  --content-width: 1150px;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -13,13 +38,14 @@ html {
 body {
   margin: 0;
   font-family: Georgia, 'Times New Roman', serif;
-  background: #f5f1e8;
-  color: #242424;
+  background: var(--cream);
+  color: var(--ink);
   line-height: 1.6;
 }
 
 img {
   max-width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -27,24 +53,27 @@ a {
   color: inherit;
 }
 
-/* =========================
-   Header
-========================= */
+/* Keyboard users need a visible focus indicator, not only hover. */
+a:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+}
 
+/* 2. SHARED HEADER AND NAVIGATION
+   Flexbox places the brand and navigation on one row.
+   The media query below stacks them on smaller screens. */
 .site-header {
-  background: #faf8f2;
+  background: var(--paper);
   border-bottom: 1px solid #d8d2c6;
 }
 
 .header-inner {
   width: min(1200px, 92%);
+  min-height: 110px;
   margin: 0 auto;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  min-height: 110px;
   gap: 30px;
 }
 
@@ -60,7 +89,8 @@ a {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 28px;
+  flex-wrap: wrap;
+  gap: 14px 28px;
 }
 
 .main-nav a {
@@ -71,38 +101,36 @@ a {
   color: #343434;
 }
 
-.main-nav a:hover {
-  color: #766346;
+.main-nav a:hover,
+.main-nav a[aria-current='page'] {
+  color: var(--gold-dark);
 }
 
-/* =========================
-   Hero
-========================= */
-
+/* 3. HERO
+   The linear-gradient darkens the photograph so white text is
+   readable. Put your chosen image at images/hero/reflections-hero.webp.
+   Until that image exists, the dark background color remains usable. */
 .hero {
-  min-height: 620px;
-
+  min-height: 580px;
   display: flex;
   align-items: center;
-
-  background:
-    linear-gradient(rgba(20, 24, 31, 0.65), rgba(20, 24, 31, 0.65)),
-    url('../images/ascendancy/emma-shard.webp');
-
-  background-size: cover;
+  background-color: #25332d;
+  background-image:
+    linear-gradient(rgba(16, 25, 21, 0.7), rgba(16, 25, 21, 0.7)),
+    url('../images/hero/reflections-hero.webp');
   background-position: center;
+  background-size: cover;
 }
 
 .hero-content {
   width: min(1200px, 92%);
   margin: 0 auto;
-  color: white;
   padding: 90px 0;
+  color: #fff;
 }
 
 .hero-kicker {
   margin: 0 0 12px;
-
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -110,21 +138,20 @@ a {
 }
 
 .hero h1 {
-  max-width: 760px;
+  max-width: 850px;
   margin: 0 0 24px;
-
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  line-height: 1.02;
+  /* clamp(minimum, fluid size, maximum) avoids abrupt font jumps. */
+  font-size: clamp(2.7rem, 5.5vw, 4.7rem);
+  line-height: 1.12;
   font-weight: normal;
 }
 
 .hero-text {
-  max-width: 680px;
-  margin: 0 0 34px;
-
+  max-width: 650px;
+  margin: 0 0 32px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.15rem;
-  line-height: 1.7;
+  font-size: 1.1rem;
+  line-height: 1.75;
 }
 
 .hero-actions {
@@ -133,23 +160,19 @@ a {
   gap: 15px;
 }
 
-/* =========================
-   Buttons
-========================= */
-
+/* 4. BUTTONS
+   A single filled button makes the hero's primary action obvious.
+   Other buttons share padding, typography, and hover behavior. */
 .button {
   display: inline-block;
   padding: 14px 26px;
-
+  border-radius: 4px;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-
-  border-radius: 4px;
-
   transition:
-    background 0.2s ease,
+    background-color 0.2s ease,
     color 0.2s ease,
     transform 0.2s ease;
 }
@@ -158,87 +181,65 @@ a {
   transform: translateY(-2px);
 }
 
-.button-primary {
-  background: #e7dfcf;
-  color: #1c1c1c;
-  border: 1px solid #e7dfcf;
-  font-weight: 600;
+.button-primary,
+.hero-actions .button-primary {
+  background: var(--gold);
+  color: #242016;
+  border: 1px solid var(--gold);
 }
 
-.button-primary:hover {
-  background: #ffffff;
-  color: #111111;
-}
-
-.button-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  color: white;
-}
-
-.button-secondary:hover {
-  background: white;
-  color: #222;
-}
-
-/* =========================
-   Hero Buttons - Matching Style
-========================= */
-
-.hero-actions .button-primary,
-.hero-actions .button-secondary {
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-}
-
-.hero-actions .button-primary:hover,
-.hero-actions .button-secondary:hover {
+.button-primary:hover,
+.hero-actions .button-primary:hover {
   background: #f4efe3;
-  color: #222222;
+  color: #242016;
   border-color: #f4efe3;
 }
 
-/* =========================
-   Mobile
-========================= */
-
-@media (max-width: 850px) {
-  .header-inner {
-    flex-direction: column;
-    justify-content: center;
-    padding: 22px 0;
-  }
-
-  .site-logo {
-    width: 165px;
-  }
-
-  .main-nav {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px 20px;
-  }
-
-  .hero {
-    min-height: 540px;
-  }
-
-  .hero-content {
-    padding: 70px 0;
-  }
+.button-secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: #fff;
 }
 
-/* =========================
-   Stories of Faith
-========================= */
+.button-secondary:hover {
+  background: #fff;
+  color: #222;
+}
 
+.reflections-button,
+.amazon-button {
+  background: var(--gold-dark);
+  color: #fff;
+  border: 1px solid var(--gold-dark);
+}
+
+.reflections-button:hover,
+.amazon-button:hover {
+  background: #5e4f38;
+  color: #fff;
+}
+
+.goodreads-button {
+  background: #f4efe3;
+  color: #222;
+  border: 1px solid #f4efe3;
+}
+
+.goodreads-button:hover {
+  background: #fff;
+  color: #111;
+}
+
+/* 5. HOMEPAGE DEVOTIONAL COLLECTION
+   CSS Grid handles columns; the HTML stays the same as books
+   are added. auto-fit creates as many 230px-wide columns as fit. */
 .faith-section {
-  background: #f5f1e8;
+  background: var(--cream);
   padding: 95px 0 105px;
 }
 
 .section-inner {
-  width: min(1150px, 90%);
+  width: min(var(--content-width), 90%);
   margin: 0 auto;
 }
 
@@ -248,22 +249,25 @@ a {
   text-align: center;
 }
 
-.section-kicker {
+.section-kicker,
+.reflections-link-kicker,
+.about-kicker,
+.connect-kicker {
   margin: 0 0 8px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #766346;
+  color: var(--gold-dark);
 }
 
-.section-heading h2 {
+.section-heading h2,
+.reflections-link-inner h2 {
   margin: 0 0 16px;
   font-size: clamp(2.3rem, 5vw, 3.5rem);
   line-height: 1.1;
   font-weight: normal;
-  color: #242424;
 }
 
 .section-intro {
@@ -271,15 +275,13 @@ a {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.05rem;
   line-height: 1.7;
-  color: #555;
+  color: var(--muted);
 }
-
-/* Book Grid */
 
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 50px 30px;
   align-items: start;
 }
 
@@ -287,43 +289,48 @@ a {
   text-align: center;
 }
 
-.book-card > a:first-child {
+.book-card > a:first-child,
+.books-page-card > a:first-child {
   display: block;
   text-decoration: none;
 }
 
-.book-cover {
+.book-cover,
+.books-page-cover {
   width: 100%;
-  max-width: 230px;
+  max-width: 220px;
   margin: 0 auto;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
-
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
 }
 
-.book-card > a:first-child:hover .book-cover {
+.book-card > a:first-child:hover .book-cover,
+.books-page-card > a:first-child:hover .books-page-cover {
   transform: translateY(-6px);
   box-shadow: 0 18px 34px rgba(0, 0, 0, 0.24);
 }
 
-.book-card h3 {
+.book-card h3,
+.books-page-card h3 {
   margin: 25px 0 10px;
-  font-size: 1.65rem;
+  font-size: 1.55rem;
   font-weight: normal;
 }
 
-.book-card p {
+.book-card p,
+.books-page-card p {
   max-width: 330px;
   margin: 0 auto 15px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.96rem;
   line-height: 1.65;
-  color: #555;
+  color: var(--muted);
 }
 
-.book-link {
+.book-link,
+.about-link {
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.9rem;
@@ -334,194 +341,54 @@ a {
   padding-bottom: 2px;
 }
 
-.book-link:hover {
+.book-link:hover,
+.about-link:hover {
   color: #222;
   border-color: #222;
 }
 
-/* Stories of Faith - Mobile */
-
-@media (max-width: 800px) {
-  .faith-section {
-    padding: 70px 0;
-  }
-
-  .book-grid {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-
-  .book-cover {
-    max-width: 230px;
-  }
-}
-
-/* =========================
-   The Ascendancy Wars
-========================= */
-
-.ascendancy-section {
-  background: #121720;
-  color: #f4f1ea;
-  padding: 100px 0 110px;
-}
-
-.ascendancy-inner {
-  width: min(1150px, 90%);
-  margin: 0 auto;
-}
-
-.ascendancy-heading {
-  max-width: 760px;
-  margin: 0 auto 65px;
-  text-align: center;
-}
-
-.ascendancy-kicker {
-  margin: 0 0 8px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: #aebbd0;
-}
-
-.ascendancy-heading h2 {
-  margin: 0 0 18px;
-
-  font-size: clamp(2.5rem, 5vw, 3.8rem);
-  line-height: 1.1;
-  font-weight: normal;
-}
-
-.ascendancy-heading p {
-  margin: 0 auto;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.7;
-
-  color: #c9ced6;
-}
-
-/* Ascendancy Books */
-
-.ascendancy-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 55px;
-
-  max-width: 800px;
-  margin: 0 auto;
-  align-items: start;
-}
-
-.ascendancy-book {
-  text-align: center;
-}
-
-.ascendancy-book > a:first-child {
-  display: block;
-  text-decoration: none;
-}
-
-.ascendancy-cover {
+/* Book Four placeholder: aspect-ratio gives it a cover shape even
+   before an image exists. Replace this div with an img later. */
+.book-cover-placeholder {
   width: 100%;
-  max-width: 210px;
+  max-width: 220px;
+  aspect-ratio: 2 / 3;
   margin: 0 auto;
-
-  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.45);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  padding: 24px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
+  background: linear-gradient(155deg, #374b3c, #192c25);
+  color: #f5ebd6;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
-.ascendancy-book > a:first-child:hover .ascendancy-cover {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.55);
-}
-
-/* Ascendancy Book Text */
-
-.ascendancy-book-info {
-  margin-top: 28px;
-}
-
-.book-status {
-  margin: 0 0 5px;
-
+.book-cover-placeholder span {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-
-  color: #aebbd0;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
 }
 
-.ascendancy-book-info h3 {
-  margin: 0 0 12px;
-
-  font-size: 1.8rem;
+.book-cover-placeholder strong {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
   font-weight: normal;
+  line-height: 1.2;
 }
 
-.ascendancy-book-info p:not(.book-status) {
-  max-width: 350px;
-  margin: 0 auto 18px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.96rem;
-  line-height: 1.65;
-
-  color: #c9ced6;
+.book-card .book-coming-soon,
+.books-page-card .book-coming-soon {
+  color: var(--gold-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
-.ascendancy-link {
-  display: inline-block;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-
-  color: #ffffff;
-  text-decoration: none;
-
-  border-bottom: 1px solid #8997aa;
-  padding-bottom: 2px;
-}
-
-.ascendancy-link:hover {
-  border-color: #ffffff;
-}
-
-/* Ascendancy - Mobile */
-
-@media (max-width: 800px) {
-  .ascendancy-section {
-    padding: 75px 0 85px;
-  }
-
-  .ascendancy-grid {
-    grid-template-columns: 1fr;
-    gap: 70px;
-  }
-
-  .ascendancy-cover {
-    max-width: 210px;
-  }
-}
-
-/* =========================
-   Daily Reflections
-========================= */
-
+/* 6. LINK TO ONGOING REFLECTIONS */
 .reflections-link-section {
-  background: #ebe4d7;
+  background: var(--sand);
   padding: 90px 0;
 }
 
@@ -531,313 +398,113 @@ a {
   text-align: center;
 }
 
-.reflections-link-kicker {
-  margin: 0 0 8px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: #766346;
-}
-
-.reflections-link-inner h2 {
-  margin: 0 0 18px;
-
-  font-size: clamp(2.3rem, 5vw, 3.5rem);
-  line-height: 1.1;
-  font-weight: normal;
-
-  color: #242424;
-}
-
-.reflections-link-inner p {
+.reflections-link-inner p:not(.reflections-link-kicker) {
   max-width: 650px;
   margin: 0 auto 28px;
-
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.05rem;
   line-height: 1.7;
-
-  color: #555;
+  color: var(--muted);
 }
 
-.reflections-button {
-  background: #766346;
-  color: #ffffff;
-  border: 1px solid #766346;
-}
-
-.reflections-button:hover {
-  background: #5e4f38;
-  color: #ffffff;
-}
-
-/* =========================
-   About William
-========================= */
-
+/* 7. HOMEPAGE AUTHOR INTRODUCTION
+   The photo occupies a fixed track; text fills the remaining space.
+   On small screens, the tracks become one column. */
 .about-section {
-  background: #f5f1e8;
+  background: var(--cream);
   padding: 100px 0;
 }
 
 .about-inner {
   width: min(1100px, 90%);
   margin: 0 auto;
-
   display: grid;
-  grid-template-columns: 360px 1fr;
+  grid-template-columns: 340px minmax(0, 1fr);
   gap: 75px;
-
   align-items: center;
 }
 
-.about-image img {
+.about-image img,
+.about-page-image img {
   width: 100%;
   max-width: 340px;
   margin: 0 auto;
-
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
-}
-
-.about-kicker {
-  margin: 0 0 8px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: #766346;
 }
 
 .about-content h2 {
   margin: 0 0 22px;
-
   font-size: clamp(2.4rem, 5vw, 3.6rem);
   line-height: 1.1;
   font-weight: normal;
-
-  color: #242424;
 }
 
-.about-content p {
+.about-content p:not(.about-kicker) {
   margin: 0 0 18px;
-
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.75;
-
-  color: #4f4f4f;
+  color: var(--body-text);
 }
 
 .about-link {
-  display: inline-block;
   margin-top: 5px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.92rem;
-  font-weight: 600;
-
-  color: #655438;
-  text-decoration: none;
-
-  border-bottom: 1px solid #a99878;
-  padding-bottom: 2px;
 }
 
-.about-link:hover {
-  color: #222;
-  border-color: #222;
+/* 8. DARK CONNECT SECTION AND FOOTER */
+.connect-section,
+.about-connect-section {
+  background: var(--dark);
+  color: var(--light-text);
+  padding: 85px 0;
 }
 
-/* About William - Mobile */
-
-@media (max-width: 800px) {
-  .about-section {
-    padding: 75px 0;
-  }
-
-  .about-inner {
-    grid-template-columns: 1fr;
-    gap: 45px;
-  }
-
-  .about-image img {
-    max-width: 280px;
-  }
-
-  .about-content {
-    text-align: center;
-  }
-}
-
-/* =========================
-   Updates
-========================= */
-
-.updates-section {
-  background: #ebe4d7;
-  padding: 90px 0;
-}
-
-.updates-inner {
-  width: min(900px, 90%);
-  margin: 0 auto;
-}
-
-.updates-heading {
-  text-align: center;
-  margin-bottom: 45px;
-}
-
-.updates-kicker {
-  margin: 0 0 8px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: #766346;
-}
-
-.updates-heading h2 {
-  margin: 0;
-
-  font-size: clamp(2.3rem, 5vw, 3.5rem);
-  line-height: 1.1;
-  font-weight: normal;
-
-  color: #242424;
-}
-
-.updates-list {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.update-item {
-  padding: 30px 0;
-
-  border-top: 1px solid #c8bdab;
-}
-
-.update-item:last-child {
-  border-bottom: 1px solid #c8bdab;
-}
-
-.update-category {
-  margin: 0 0 7px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-
-  color: #766346;
-}
-
-.update-item h3 {
-  margin: 0 0 10px;
-
-  font-size: 1.55rem;
-  font-weight: normal;
-
-  color: #242424;
-}
-
-.update-item p:not(.update-category) {
-  margin: 0;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  line-height: 1.7;
-
-  color: #555;
-}
-
-/* =========================
-   Connect with William
-========================= */
-
-.connect-section {
-  background: #121720;
-  color: #f4f1ea;
-  padding: 85px 0 75px;
-}
-
-.connect-inner {
-  width: min(700px, 90%);
+.connect-inner,
+.about-connect-inner {
+  width: min(760px, 90%);
   margin: 0 auto;
   text-align: center;
 }
 
 .connect-kicker {
-  margin: 0 0 8px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: #aebbd0;
+  color: #cbbd9c;
 }
 
-.connect-inner h2 {
+.connect-inner h2,
+.about-connect-inner h2 {
   margin: 0 0 16px;
-
   font-size: clamp(2.2rem, 5vw, 3.3rem);
   line-height: 1.1;
   font-weight: normal;
 }
 
-.connect-inner p {
-  max-width: 580px;
+.connect-inner p:not(.connect-kicker),
+.about-connect-inner p:not(.connect-kicker) {
+  max-width: 620px;
   margin: 0 auto 28px;
-
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.7;
-
   color: #c9ced6;
 }
 
-.goodreads-button {
-  background: #f4efe3;
-  color: #222222;
-  border: 1px solid #f4efe3;
+.about-connect-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
 }
-
-.goodreads-button:hover {
-  background: #ffffff;
-  color: #111111;
-}
-
-/* =========================
-   Footer
-========================= */
 
 .site-footer {
-  background: #0c1016;
+  background: var(--darkest);
   color: #aeb4bd;
-
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-
   padding: 32px 0;
 }
 
 .footer-inner {
   width: min(1100px, 90%);
   margin: 0 auto;
-
   text-align: center;
 }
 
@@ -845,184 +512,31 @@ a {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-
   gap: 12px 25px;
-
   margin-bottom: 20px;
 }
 
 .footer-nav a {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.85rem;
-
   color: #d2d6dc;
   text-decoration: none;
 }
 
 .footer-nav a:hover {
-  color: #ffffff;
+  color: #fff;
 }
 
 .copyright {
   margin: 0;
-
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
-
   color: #8f969f;
 }
 
-/* =========================
-   Individual Book Pages
-========================= */
-
-.book-detail-section {
-  background: #f5f1e8;
-  padding: 95px 0 105px;
-}
-
-.book-detail-inner {
-  width: min(1050px, 90%);
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 70px;
-
-  align-items: center;
-}
-
-.book-detail-cover img {
-  width: 100%;
-  max-width: 280px;
-  margin: 0 auto;
-
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
-}
-
-.book-detail-series {
-  margin: 0 0 8px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-
-  color: #766346;
-}
-
-.book-detail-content h1 {
-  margin: 0 0 8px;
-
-  font-size: clamp(2.8rem, 6vw, 4.7rem);
-  line-height: 1.05;
-  font-weight: normal;
-
-  color: #242424;
-}
-
-.book-detail-subtitle {
-  margin: 0 0 28px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-
-  color: #6a6258;
-}
-
-.book-detail-content p:not(.book-detail-series):not(.book-detail-subtitle) {
-  max-width: 650px;
-  margin: 0 0 18px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  line-height: 1.75;
-
-  color: #4f4f4f;
-}
-
-.amazon-button {
-  margin-top: 12px;
-
-  background: #766346;
-  color: #ffffff;
-  border: 1px solid #766346;
-}
-
-.amazon-button:hover {
-  background: #5e4f38;
-  color: #ffffff;
-}
-
-/* Individual Book Pages - Mobile */
-
-@media (max-width: 800px) {
-  .book-detail-section {
-    padding: 70px 0 80px;
-  }
-
-  .book-detail-inner {
-    grid-template-columns: 1fr;
-    gap: 45px;
-
-    text-align: center;
-  }
-
-  .book-detail-cover img {
-    max-width: 240px;
-  }
-
-  .book-detail-content p:not(.book-detail-series):not(.book-detail-subtitle) {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-/* =========================
-   Ascendancy Book Page
-========================= */
-
-.ascendancy-detail-section {
-  background: #121720;
-  color: #f4f1ea;
-}
-
-.ascendancy-detail-content h1 {
-  color: #f4f1ea;
-}
-
-.ascendancy-detail-content .book-detail-series {
-  color: #aebbd0;
-}
-
-.ascendancy-detail-content .book-detail-subtitle {
-  color: #c9ced6;
-}
-
-.ascendancy-detail-content
-  p:not(.book-detail-series):not(.book-detail-subtitle) {
-  color: #d2d6dc;
-}
-
-.ascendancy-amazon-button {
-  background: #f4efe3;
-  color: #222222;
-  border: 1px solid #f4efe3;
-}
-
-.ascendancy-amazon-button:hover {
-  background: #ffffff;
-  color: #111111;
-}
-
-/* =========================
-   Books Page
-========================= */
-
+/* 9. BOOKS LISTING PAGE */
 .books-page-intro {
-  background: #f5f1e8;
+  background: var(--cream);
   padding: 80px 0 60px;
 }
 
@@ -1034,35 +548,23 @@ a {
 
 .books-page-intro h1 {
   margin: 0 0 16px;
-
   font-size: clamp(3rem, 6vw, 4.5rem);
   line-height: 1.05;
   font-weight: normal;
-
-  color: #242424;
 }
 
 .books-page-intro p:not(.section-kicker) {
-  margin: 0 auto;
-
   max-width: 700px;
-
+  margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.05rem;
   line-height: 1.7;
-
-  color: #555;
+  color: var(--muted);
 }
 
 .books-faith-section {
-  background: #f5f1e8;
+  background: var(--cream);
   padding: 30px 0 100px;
-}
-
-.books-ascendancy-section {
-  background: #121720;
-  color: #f4f1ea;
-  padding: 95px 0 105px;
 }
 
 .books-page-inner {
@@ -1078,342 +580,261 @@ a {
 
 .books-group-heading h2 {
   margin: 0 0 14px;
-
   font-size: clamp(2.3rem, 5vw, 3.5rem);
   line-height: 1.1;
   font-weight: normal;
 }
 
-.books-group-heading p:not(.section-kicker):not(.ascendancy-kicker) {
+.books-group-heading p:not(.section-kicker) {
   margin: 0 auto;
-
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.7;
-
-  color: #555;
+  color: var(--muted);
 }
 
-.books-group-heading-dark p:not(.ascendancy-kicker) {
-  color: #c9ced6;
-}
-
+/* Retain the original class name so existing HTML needs no edits. */
 .books-page-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 50px 30px;
   align-items: start;
 }
 
 .books-page-grid-three {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 45px;
-}
-
-.books-page-grid-two {
-  grid-template-columns: repeat(2, 1fr);
-  gap: 60px;
-
-  max-width: 800px;
-  margin: 0 auto;
+  /* Named for compatibility; column count is now automatic. */
 }
 
 .books-page-card {
   text-align: center;
 }
 
-.books-page-card > a:first-child {
-  display: block;
-  text-decoration: none;
-}
-
 .books-page-cover {
-  width: 100%;
-  max-width: 220px;
-  margin: 0 auto 24px;
-
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.books-page-card > a:first-child:hover .books-page-cover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.28);
+  margin-bottom: 24px;
 }
 
 .books-page-card h3 {
-  margin: 0 0 8px;
+  margin-top: 0;
+}
 
-  font-size: 1.65rem;
+.books-page-card .book-cover-placeholder {
+  margin-bottom: 24px;
+}
+
+/* 10. INDIVIDUAL DEVOTIONAL BOOK PAGES
+   These original class names are preserved because the existing
+   book detail pages were not part of the current HTML revisions. */
+.book-detail-section {
+  background: var(--cream);
+  padding: 95px 0 105px;
+}
+
+.book-detail-inner {
+  width: min(1050px, 90%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 70px;
+  align-items: center;
+}
+
+.book-detail-cover img {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+}
+
+.book-detail-series {
+  margin: 0 0 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+.book-detail-content h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2.8rem, 6vw, 4.7rem);
+  line-height: 1.05;
   font-weight: normal;
 }
 
-.books-page-card p {
-  max-width: 330px;
-  margin: 0 auto 14px;
-
+.book-detail-subtitle {
+  margin: 0 0 28px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.6;
-
-  color: #555;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6a6258;
 }
 
-.books-page-card-dark h3 {
-  color: #f4f1ea;
+.book-detail-content p:not(.book-detail-series):not(.book-detail-subtitle) {
+  max-width: 650px;
+  margin: 0 0 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--body-text);
 }
 
-.books-page-card-dark p:not(.book-status) {
-  color: #c9ced6;
+.amazon-button {
+  margin-top: 12px;
 }
 
-/* Books Page - Mobile */
-
-@media (max-width: 800px) {
-  .books-page-grid-three,
-  .books-page-grid-two {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-
-  .books-page-cover {
-    max-width: 210px;
-  }
-
-  .books-faith-section,
-  .books-ascendancy-section {
-    padding-top: 70px;
-    padding-bottom: 80px;
-  }
-}
-
-/* =========================
-   About Page
-========================= */
-
+/* 11. FULL ABOUT PAGE */
 .about-page-section {
-  background: #f5f1e8;
+  background: var(--cream);
   padding: 100px 0;
 }
 
 .about-page-inner {
   width: min(1100px, 90%);
   margin: 0 auto;
-
   display: grid;
-  grid-template-columns: 360px 1fr;
+  grid-template-columns: 360px minmax(0, 1fr);
   gap: 75px;
-
   align-items: start;
-}
-
-.about-page-image img {
-  width: 100%;
-  max-width: 340px;
-  margin: 0 auto;
-
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
 .about-page-content h1 {
   margin: 0 0 24px;
-
   font-size: clamp(2.8rem, 6vw, 4.5rem);
   line-height: 1.05;
   font-weight: normal;
-
-  color: #242424;
 }
 
-.about-page-content p {
+.about-page-content p:not(.about-kicker) {
   margin: 0 0 20px;
-
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.8;
-
-  color: #4f4f4f;
+  color: var(--body-text);
 }
 
-/* About Connect */
-
-.about-connect-section {
-  background: #121720;
-  color: #f4f1ea;
-  padding: 85px 0;
-}
-
-.about-connect-inner {
-  width: min(760px, 90%);
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about-connect-inner h2 {
-  margin: 0 0 16px;
-
-  font-size: clamp(2.2rem, 5vw, 3.3rem);
-  line-height: 1.1;
-  font-weight: normal;
-}
-
-.about-connect-inner p {
-  max-width: 620px;
-  margin: 0 auto 28px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  line-height: 1.7;
-
-  color: #c9ced6;
-}
-
-.about-connect-actions {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-/* About Page - Mobile */
-
-@media (max-width: 800px) {
-  .about-page-section {
-    padding: 75px 0;
+/* 12. RESPONSIVE DESIGN
+   Breakpoints respond to layout needs rather than device brands.
+   We stack large two-column sections before text becomes cramped. */
+@media (max-width: 850px) {
+  .header-inner {
+    flex-direction: column;
+    justify-content: center;
+    padding: 22px 0;
   }
 
-  .about-page-inner {
+  .site-logo {
+    width: 165px;
+  }
+
+  .main-nav {
+    justify-content: center;
+    gap: 12px 20px;
+  }
+
+  .hero {
+    min-height: 520px;
+  }
+
+  .hero-content {
+    padding: 75px 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .faith-section,
+  .about-section,
+  .about-page-section {
+    padding: 70px 0;
+  }
+
+  .books-faith-section {
+    padding: 40px 0 80px;
+  }
+
+  .book-detail-section {
+    padding: 70px 0 80px;
+  }
+
+  .about-inner,
+  .about-page-inner,
+  .book-detail-inner {
     grid-template-columns: 1fr;
     gap: 45px;
   }
 
+  .about-image img,
   .about-page-image img {
     max-width: 280px;
   }
 
-  .about-page-content {
+  .book-detail-cover img {
+    max-width: 240px;
+  }
+
+  .about-content,
+  .about-page-content,
+  .book-detail-inner {
     text-align: center;
   }
-}
 
-/* =========================
-   Hero - Mobile Background
-========================= */
-
-@media (max-width: 800px) {
-  .hero {
-    background-image:
-      linear-gradient(rgba(10, 14, 20, 0.68), rgba(10, 14, 20, 0.68)),
-      url('../images/ascendancy/mobile-hero.webp');
-
-    background-position: center center;
-    background-size: cover;
-  }
-}
-
-/* =========================
-   Site-Wide Mobile Cleanup
-========================= */
-
-@media (max-width: 800px) {
-  html,
-  body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .hero-content,
-  .section-inner,
-  .section-heading,
-  .ascendancy-inner,
-  .ascendancy-heading,
-  .reflections-link-inner,
-  .about-inner,
-  .updates-inner,
-  .connect-inner,
-  .footer-inner {
-    width: calc(100% - 36px);
-    max-width: 100%;
-    min-width: 0;
+  .book-detail-content p:not(.book-detail-series):not(.book-detail-subtitle) {
     margin-left: auto;
     margin-right: auto;
-    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    min-height: 470px;
   }
 
-  /* Homepage hero */
-
   .hero-content {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 65px 0;
   }
 
   .hero h1 {
-    max-width: 100%;
-    font-size: clamp(2.4rem, 12vw, 3.5rem);
-    line-height: 1.03;
-    overflow-wrap: normal;
-    word-break: normal;
+    font-size: clamp(2.1rem, 9vw, 3rem);
   }
 
   .hero-text {
-    max-width: 100%;
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.65;
   }
-
-  /* Faith and Ascendancy headings */
-
-  .section-heading h2,
-  .ascendancy-heading h2 {
-    max-width: 100%;
-    font-size: clamp(2.1rem, 10vw, 3rem);
-    line-height: 1.08;
-    overflow-wrap: normal;
-    word-break: normal;
-  }
-
-  .section-intro,
-  .ascendancy-heading p {
-    max-width: 100%;
-  }
-
-  /* Book grids */
 
   .book-grid,
-  .ascendancy-grid {
+  .books-page-grid {
     grid-template-columns: 1fr;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
+    gap: 55px;
   }
 
-  .book-card,
-  .ascendancy-book {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
+  .reflections-link-section,
+  .connect-section,
+  .about-connect-section {
+    padding: 70px 0;
+  }
+
+  .books-page-intro {
+    padding: 65px 0 35px;
   }
 }
 
-/* =========================
-   Ascendancy Heading - Final Mobile Fix
-========================= */
+/* 13. ACCESSIBILITY
+   Respect visitors who prefer less animation. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-@media (max-width: 800px) {
-  .ascendancy-heading h2 {
-    width: 100%;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+  .button,
+  .book-cover,
+  .books-page-cover {
+    transition: none;
+  }
 
-    font-size: clamp(1.8rem, 8vw, 2.4rem);
-    line-height: 1.08;
+  .button:hover,
+  .book-card > a:first-child:hover .book-cover,
+  .books-page-card > a:first-child:hover .books-page-cover {
+    transform: none;
   }
 }
