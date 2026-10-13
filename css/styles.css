@@ -407,48 +407,11 @@ a:focus-visible {
   color: var(--muted);
 }
 
-/* 7. HOMEPAGE AUTHOR INTRODUCTION
-   The photo occupies a fixed track; text fills the remaining space.
-   On small screens, the tracks become one column. */
-.about-section {
-  background: var(--cream);
-  padding: 100px 0;
-}
-
-.about-inner {
-  width: min(1100px, 90%);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 340px minmax(0, 1fr);
-  gap: 75px;
-  align-items: center;
-}
-
-.about-image img,
 .about-page-image img {
   width: 100%;
   max-width: 340px;
   margin: 0 auto;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
-}
-
-.about-content h2 {
-  margin: 0 0 22px;
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  line-height: 1.1;
-  font-weight: normal;
-}
-
-.about-content p:not(.about-kicker) {
-  margin: 0 0 18px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  line-height: 1.75;
-  color: var(--body-text);
-}
-
-.about-link {
-  margin-top: 5px;
 }
 
 /* 8. DARK CONNECT SECTION AND FOOTER */
@@ -599,10 +562,6 @@ a:focus-visible {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
   gap: 50px 30px;
   align-items: start;
-}
-
-.books-page-grid-three {
-  /* Named for compatibility; column count is now automatic. */
 }
 
 .books-page-card {
