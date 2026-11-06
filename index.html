@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--
-      PAGE TITLE AND DESCRIPTION
-      The title appears in browser tabs and search results.
-      The description helps search engines understand the page.
-    -->
+    <!-- PAGE TITLE AND DESCRIPTION -->
     <title>Christian Devotional Books | William G. Hoffman</title>
 
     <meta
@@ -22,20 +18,13 @@
       href="images/logo/hoffman-books-icon.png"
     />
 
-    <!-- Shared stylesheet used throughout the website -->
+    <!-- Shared stylesheet -->
     <link rel="stylesheet" href="css/styles.css" />
   </head>
 
   <body>
     <!-- ========================================
          HEADER AND NAVIGATION
-
-         Semantic <header> and <nav> elements help
-         browsers, screen readers, and search engines
-         understand the page structure.
-
-         The same navigation should appear on every
-         page for a consistent visitor experience.
     ========================================= -->
 
     <header class="site-header">
@@ -61,16 +50,6 @@
     <main>
       <!-- ========================================
            HERO SECTION
-
-           The hero introduces the purpose of the site.
-
-           DESIGN DECISION:
-           One primary call to action gives visitors
-           a clear next step instead of making them
-           choose between competing options.
-
-           The background photograph and dark overlay
-           will be controlled in styles.css.
       ========================================= -->
 
       <section class="hero">
@@ -98,16 +77,6 @@
 
       <!-- ========================================
            DEVOTIONAL BOOK SERIES
-
-           Each book uses an <article> element because
-           it represents a self-contained item.
-
-           CSS Grid controls the arrangement of the
-           cards, allowing us to change the number of
-           columns without changing the HTML.
-
-           Additional books can be added by copying
-           one complete book-card article.
       ========================================= -->
 
       <section class="faith-section" id="reflections">
@@ -195,31 +164,39 @@
               </a>
             </article>
 
-            <!--
-              BOOK FOUR: WALKING IN THE LIGHT
-
-              This card uses a temporary text placeholder
-              until the book cover image is available.
-
-              We intentionally do not link to a detail page
-              that has not yet been created.
-            -->
+            <!-- ========================================
+                 BOOK FOUR: WALKING IN LIGHT
+            ========================================= -->
 
             <article class="book-card">
-              <div class="book-cover-placeholder">
-                <span>Daily Reflection for the Soul</span>
-                <strong>Walking in the Light</strong>
-                <span>William G. Hoffman</span>
-              </div>
+              <a
+                href="https://www.amazon.com/dp/B0HQNKL2FL"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="images/devotionals/walking-in-light.webp"
+                  alt="Cover of Walking in Light by William G. Hoffman"
+                  class="book-cover"
+                  loading="lazy"
+                />
+              </a>
 
-              <h3>Walking in the Light</h3>
+              <h3>Walking in Light</h3>
 
               <p>
-                Continue the journey through Scripture with daily reflections on
-                faith, obedience, and walking in the light of God's Word.
+                Reflection on the letters of the apostles and the stories of
+                Ruth and Esther.
               </p>
 
-              <p class="book-coming-soon">Book Four — Coming Soon</p>
+              <a
+                href="https://www.amazon.com/dp/B0HQNKL2FL"
+                class="book-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn More
+              </a>
             </article>
           </div>
         </div>
@@ -227,15 +204,6 @@
 
       <!-- ========================================
            DAILY REFLECTIONS BLOG
-
-           This section connects the book website to
-           the separate Journey in Faith blog.
-
-           target="_blank" opens the external site
-           in a new browser tab.
-
-           rel="noopener noreferrer" provides an
-           additional security and privacy safeguard.
       ========================================= -->
 
       <section class="reflections-link-section" id="daily-reflections">
@@ -262,10 +230,6 @@
 
       <!-- ========================================
            CONNECT WITH THE AUTHOR
-
-           Goodreads provides a place where readers
-           can discover the author's books and follow
-           his published work.
       ========================================= -->
 
       <section class="connect-section">
@@ -293,10 +257,6 @@
 
     <!-- ========================================
          FOOTER
-
-         The footer repeats important navigation
-         links so visitors can navigate easily
-         after reaching the bottom of the page.
     ========================================= -->
 
     <footer class="site-footer">
@@ -322,10 +282,7 @@
       </div>
     </footer>
 
-    <!--
-      JavaScript is loaded at the end of the body
-      so the HTML is available before the script runs.
-    -->
+    <!-- JavaScript loads after the page content -->
     <script src="js/main.js"></script>
   </body>
 </html>
